@@ -1,8 +1,0 @@
-{
-    "java.project.sourcePaths": [
-        "frontend/src"
-    ],
-    "java.project.referencedLibraries": [
-        "/Users/samuel/Downloads/mysql-connector-j-9.0.0/mysql-connector-j-9.0.0.jar"
-    ]
-}
