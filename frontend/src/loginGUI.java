@@ -75,24 +75,19 @@ public class loginGUI implements ActionListener {
 
                 try (ResultSet rs = pstmt.executeQuery()) {
                     if (rs.next()) {
-                        // Login successful
                         success.setText("Login successful!");
 
-                        // Create an instance of the dashboard class
                         dashboardGUI dashboard = new dashboardGUI();
                         dashboard.setVisible(true);
 
-                        // Dispose of the login frame
                         JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(userText);
                         frame.dispose();
                     } else {
-                        // Login failed
                         success.setText("Invalid username or password");
                     }
                 }
             }
         } catch (SQLException ex) {
-            // Handle exceptions
             success.setText("Error: " + ex.getMessage());
         }
     }
