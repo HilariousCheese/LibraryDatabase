@@ -44,6 +44,7 @@ CREATE TABLE `archiveitem` (
 CREATE TABLE `person` (
   `PersonId` int(11) NOT NULL AUTO_INCREMENT,
   `uNAME` varchar(30) NOT NULL,
+  `pw` varchar(255) NOT NULL,
   `UserType` varchar(30) DEFAULT NULL,
   `PreferredBranch` int(11) DEFAULT NULL,
   `TotalLoansMade` int(11) DEFAULT NULL,

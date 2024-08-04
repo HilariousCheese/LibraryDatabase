@@ -69,7 +69,7 @@ public class dashboardGUI extends JFrame implements ActionListener {
         // Add action listeners to buttons
         searchButton.addActionListener(new SearchButtonListener());
         branchButton.addActionListener(new BranchButtonListener());
-        // popularBooksButton.addActionListener(new PopularBooksButtonListener());
+        popularBooksButton.addActionListener(new PopularBooksButtonListener());
         bookLibraryButton.addActionListener(new BookLibraryButtonListener());
         // friendsInfoButton.addActionListener(new FriendsInfoButtonListener());
         // profileButton.addActionListener(new ProfileButtonListener());
@@ -87,12 +87,14 @@ public class dashboardGUI extends JFrame implements ActionListener {
         public void actionPerformed(ActionEvent e) {
             String searchQuery = searchField.getText();
             try {
-                rs = stmt.executeQuery("SELECT * FROM library WHERE item LIKE '%" + searchQuery + "%'");
+                rs = stmt.executeQuery("SELECT * FROM item WHERE title LIKE '%" + searchQuery + "%'");
+                resultArea.setText("");
                 while (rs.next()) {
                     resultArea.append(
-                            "Title: " + rs.getString("bookName") + 
-                            "\nAuthor: " + rs.getString("author") +
-                             "\n\n");
+                            "Title: " + rs.getString("title")
+                            + "\nAuthor: " + rs.getString("author")
+                            + "\n\n"
+                            );
                 }
             } catch (SQLException ex) {
                 System.out.println("Error querying database: " + ex.getMessage());
@@ -107,11 +109,13 @@ public class dashboardGUI extends JFrame implements ActionListener {
         public void actionPerformed(ActionEvent e) {
             try {
                 rs = stmt.executeQuery("SELECT * FROM librarybranch");
+                resultArea.setText("");
                 while (rs.next()){
                     resultArea.append(
-                        "BranchID: " + rs.getString("LibraryBranchID") + 
-                        "Name: " + rs.getString("BranchName") +
-                        "Address: " + rs.getString("Address")
+                        "BranchID: " + rs.getString("LibraryBranchID") 
+                        + "\nName: " + rs.getString("BranchName")
+                        + "\nAddress: " + rs.getString("Address")
+                        + "\n\n"
                         );
                 }
             } catch (SQLException ex) {
@@ -121,11 +125,48 @@ public class dashboardGUI extends JFrame implements ActionListener {
     }
 
     //popular book listener
+    private class PopularBooksButtonListener implements ActionListener{
+        public void actionPerformed(ActionEvent e){
+            try {
+                rs = stmt.executeQuery("SELECT i.title, COUNT(r.ratingid) as totalRatings\r\n"
+                    + "FROM item i\r\n"
+                    + "JOIN rating r ON i.ItemId = r.ItemId\r\n" 
+                    + "GROUP BY i.title\r\n"
+                    + "ORDER BY totalRatings DESC\r\n"
+                    + "LIMIT 1;"
+                    );
+                    resultArea.setText("");
+                while (rs.next()){
+                    resultArea.append(
+                        "Title: " + rs.getString("title")
+                        + "\nRatings: " + rs.getString("totalRatings"));
+
+
+                }
+            } catch (Exception ex) {
+                System.out.println("Error" + ex.getMessage());
+            }
+        }
+    }
     
     private class BookLibraryButtonListener implements ActionListener{
         public void actionPerformed(ActionEvent e) {
             try {
-                rs = stmt.executeQuery(" ");
+                rs = stmt.executeQuery("SELECT i.title, i.author, i.copies, i.ItemType, lb.BranchName\r\n"
+                    + "FROM item i\r\n"
+                    + "JOIN librarybranch lb\r\n"
+                    + "ON i.LibraryBranchID = lb.LibraryBranchID;");
+                resultArea.setText("");
+                while (rs.next()){
+                    resultArea.append(
+                        "Title: " + rs.getString("title")
+                        + "\nAuthor: " + rs.getString("author")
+                        + "\nAvaliable Branch: " + rs.getString("BranchName")
+                        + "\nCopies: " + rs.getString("copies")
+                        + "\nGenre: " + rs.getString("ItemType")
+                        + "\n\n"
+                    );
+                }
             } catch (SQLException ex) {
                 System.out.println("Error querying database: " + ex.getMessage());
             }

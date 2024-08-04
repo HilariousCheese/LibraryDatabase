@@ -68,7 +68,7 @@ public class loginGUI implements ActionListener {
 
         
         try (Connection conn = DriverManager.getConnection(URL, DB_USER, DB_PW)) {
-            String query = "SELECT * FROM users WHERE username = ? AND pw = ?";
+            String query = "SELECT * FROM person WHERE uNAME= ? AND pw = ?";
             try (PreparedStatement pstmt = conn.prepareStatement(query)) {
                 pstmt.setString(1, user);
                 pstmt.setString(2, password);
