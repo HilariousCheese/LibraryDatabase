@@ -9,8 +9,9 @@ public class dashboardGUI extends JFrame implements ActionListener {
     JPanel leftPanel = new JPanel();
     JTextField searchField = new JTextField(20);
     JButton searchButton = new JButton("Book Search");
+    JButton branchButton = new JButton("Branches");
     JButton popularBooksButton = new JButton("Popular Books");
-    JButton libraryBookButton = new JButton("library");
+    JButton bookLibraryButton = new JButton("Book Library");
     JButton friendsInfoButton = new JButton("Friends Info");
     JButton profileButton = new JButton("Profile");
     JButton settingsButton = new JButton("Settings");
@@ -37,8 +38,9 @@ public class dashboardGUI extends JFrame implements ActionListener {
 
         JPanel buttonsPanel = new JPanel();
         buttonsPanel.setLayout(new BoxLayout(buttonsPanel, BoxLayout.Y_AXIS));
+        buttonsPanel.add(branchButton);
         buttonsPanel.add(popularBooksButton);
-        buttonsPanel.add(libraryBookButton);
+        buttonsPanel.add(bookLibraryButton);
         buttonsPanel.add(friendsInfoButton);
         buttonsPanel.add(profileButton);
         buttonsPanel.add(settingsButton);
@@ -66,8 +68,9 @@ public class dashboardGUI extends JFrame implements ActionListener {
 
         // Add action listeners to buttons
         searchButton.addActionListener(new SearchButtonListener());
+        branchButton.addActionListener(new BranchButtonListener());
         // popularBooksButton.addActionListener(new PopularBooksButtonListener());
-        libraryBookButton.addActionListener(new LibraryButtonListener());
+        bookLibraryButton.addActionListener(new BookLibraryButtonListener());
         // friendsInfoButton.addActionListener(new FriendsInfoButtonListener());
         // profileButton.addActionListener(new ProfileButtonListener());
         // settingsButton.addActionListener(new SettingsButtonListener());
@@ -87,7 +90,9 @@ public class dashboardGUI extends JFrame implements ActionListener {
                 rs = stmt.executeQuery("SELECT * FROM library WHERE bookName LIKE '%" + searchQuery + "%'");
                 while (rs.next()) {
                     resultArea.append(
-                            "Title: " + rs.getString("bookName") + "\nAuthor: " + rs.getString("author") + "\n\n");
+                            "Title: " + rs.getString("bookName") + 
+                            "\nAuthor: " + rs.getString("author") +
+                             "\n\n");
                 }
             } catch (SQLException ex) {
                 System.out.println("Error querying database: " + ex.getMessage());
@@ -97,10 +102,27 @@ public class dashboardGUI extends JFrame implements ActionListener {
 
     //profile button listener
 
+    //Branch button listener
+    private class BranchButtonListener implements ActionListener{
+        public void actionPerformed(ActionEvent e) {
+            try {
+                rs = stmt.executeQuery("SELECT * FROM librarybranch");
+                while (rs.next()){
+                    resultArea.append(
+                        "BranchID: " + rs.getString("LibraryBranchID") + 
+                        "Name: " + rs.getString("BranchName") +
+                        "Address: " + rs.getString("Address")
+                        );
+                }
+            } catch (SQLException ex) {
+                System.out.println("Error" + ex.getMessage());
+            }
+        }
+    }
 
     //popular book listener
     
-    private class LibraryButtonListener implements ActionListener{
+    private class BookLibraryButtonListener implements ActionListener{
         public void actionPerformed(ActionEvent e) {
             try {
                 rs = stmt.executeQuery(" ");
