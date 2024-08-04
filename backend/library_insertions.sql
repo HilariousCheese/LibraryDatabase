@@ -7,5 +7,10 @@ INSERT INTO 'librarybranch' VALUES (4, 'Mountain View Public Library', '585 Fran
 INSERT INTO 'librarybranch' VALUES (5, 'Milpitas Library', '160 N Main St, Milpitas, CA 95035');
 
 insert into person(uname,usertype,preferredbranch) values('Ivan','U','1');
+insert into person(uname,usertype,preferredbranch) values('Tom','U','2');
+insert into person(uname,usertype,preferredbranch) values('Amy','U','3');
+insert into person(uname,usertype,preferredbranch) values('Bob','U','4');
+insert into person(uname,usertype,preferredbranch) values('Alice','U','5');
+
 
 insert into item(title,author,edition,libraryBranchID,ItemType,standardNumber,copies) values();
