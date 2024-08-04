@@ -15,11 +15,23 @@ insert into person(uname,usertype,preferredbranch) values('Alice','U','5');
 
 insert into item(title,author,libraryBranchID,ItemType,copies) values('Dune', 'Frank Herbert', '1,2,5', 'Novel', '5');
 insert into item(title,author,libraryBranchID,ItemType,copies) values('To Kill a Mockingbird', 'Harper Lee', '2,4', 'Novel', '2');
-insert into item(title,author,edition,libraryBranchID,ItemType,copies) values('Life of Pi', 'Yann Martel', '4', 'Novel','1');
-insert into item(title,author,edition,libraryBranchID,ItemType,copies) values('Where is Waldo?', 'Martin Handford', '1,2,3,4,5','Picture Book', '13' );
-insert into item(title,author,edition,libraryBranchID,ItemType,copies) values('The Very Hungry Caterpillar', 'Eric Carle', '3,5', 'Board Book', '3');
-insert into item(title,author,edition,libraryBranchID,ItemType,copies) values('Harry Potter and the Chamber of Secrets', 'J.K. Rowling', '1,2,3,4,5', 'Novel', '5');
-insert into item(title,author,edition,libraryBranchID,ItemType,copies) values('If You Give a Mouse a Cookie', 'Laura Numeroff', '1', 'Picture Book', '2');
+insert into item(title,author,libraryBranchID,ItemType,copies) values('Life of Pi', 'Yann Martel', '4', 'Novel','1');
+insert into item(title,author,libraryBranchID,ItemType,copies) values('Where is Waldo?', 'Martin Handford', '1,2,3,4,5','Picture Book', '13' );
+insert into item(title,author,libraryBranchID,ItemType,copies) values('The Very Hungry Caterpillar', 'Eric Carle', '3,5', 'Board Book', '3');
+insert into item(title,author,libraryBranchID,ItemType,copies) values('Harry Potter and the Chamber of Secrets', 'J.K. Rowling', '1,2,3,4,5', 'Novel', '5');
+insert into item(title,author,libraryBranchID,ItemType,copies) values('If You Give a Mouse a Cookie', 'Laura Numeroff', '1', 'Picture Book', '2');
 
 
-insert into rating(ratingdate,itemid,personid,stars) values();
+insert into rating(ratingdate,itemid,personid,stars) values('2020-03-12', '1', '3', '3');
+insert into rating(ratingdate,itemid,personid,stars) values('2023-12-12', '1', '4', '3');
+insert into rating(ratingdate,itemid,personid,stars) values('2020-08-11', '1', '5', '4');
+insert into rating(ratingdate,itemid,personid,stars) values('2021-04-30', '1', '2', '3');
+insert into rating(ratingdate,itemid,personid,stars) values('2021-08-06', '4', '3', '3');
+insert into rating(ratingdate,itemid,personid,stars) values('2022-09-26', '3', '1', '5');
+insert into rating(ratingdate,itemid,personid,stars) values('2024-07-17', '5', '1', '4');
+insert into rating(ratingdate,itemid,personid,stars) values('2023-11-24', '3', '5', '5');
+insert into rating(ratingdate,itemid,personid,stars) values('2022-06-14', '4', '2', '2');
+insert into rating(ratingdate,itemid,personid,stars) values('2021-11-19', '4', '1', '1');
+insert into rating(ratingdate,itemid,personid,stars) values('2021-02-02', '3', '3', '2');
+insert into rating(ratingdate,itemid,personid,stars) values('2023-12-21', '5', '5', '5');
+
