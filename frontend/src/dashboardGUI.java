@@ -9,9 +9,10 @@ public class dashboardGUI extends JFrame implements ActionListener {
     JPanel leftPanel = new JPanel();
     JTextField searchField = new JTextField(20);
     JButton searchButton = new JButton("Book Search");
-    JButton profileButton = new JButton("Profile");
     JButton popularBooksButton = new JButton("Popular Books");
+    JButton libraryBookButton = new JButton("library");
     JButton friendsInfoButton = new JButton("Friends Info");
+    JButton profileButton = new JButton("Profile");
     JButton settingsButton = new JButton("Settings");
     JButton logoutButton = new JButton("Logout");
 
@@ -36,9 +37,10 @@ public class dashboardGUI extends JFrame implements ActionListener {
 
         JPanel buttonsPanel = new JPanel();
         buttonsPanel.setLayout(new BoxLayout(buttonsPanel, BoxLayout.Y_AXIS));
-        buttonsPanel.add(profileButton);
         buttonsPanel.add(popularBooksButton);
+        buttonsPanel.add(libraryBookButton);
         buttonsPanel.add(friendsInfoButton);
+        buttonsPanel.add(profileButton);
         buttonsPanel.add(settingsButton);
         buttonsPanel.add(logoutButton);
         leftPanel.add(buttonsPanel, BorderLayout.CENTER);
@@ -64,9 +66,10 @@ public class dashboardGUI extends JFrame implements ActionListener {
 
         // Add action listeners to buttons
         searchButton.addActionListener(new SearchButtonListener());
-        // profileButton.addActionListener(new ProfileButtonListener());
         // popularBooksButton.addActionListener(new PopularBooksButtonListener());
+        libraryBookButton.addActionListener(new LibraryButtonListener());
         // friendsInfoButton.addActionListener(new FriendsInfoButtonListener());
+        // profileButton.addActionListener(new ProfileButtonListener());
         // settingsButton.addActionListener(new SettingsButtonListener());
         // logoutButton.addActionListener(new LogoutButtonListener());
 
@@ -96,6 +99,17 @@ public class dashboardGUI extends JFrame implements ActionListener {
 
 
     //popular book listener
+    
+    private class LibraryButtonListener implements ActionListener{
+        public void actionPerformed(ActionEvent e) {
+            try {
+                rs = stmt.executeQuery(" ");
+            } catch (SQLException ex) {
+                System.out.println("Error querying database: " + ex.getMessage());
+            }
+        }
+
+    } 
 
     //friends info listener
 
