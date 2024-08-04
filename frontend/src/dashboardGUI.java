@@ -74,7 +74,7 @@ public class dashboardGUI extends JFrame implements ActionListener {
         // friendsInfoButton.addActionListener(new FriendsInfoButtonListener());
         // profileButton.addActionListener(new ProfileButtonListener());
         // settingsButton.addActionListener(new SettingsButtonListener());
-        // logoutButton.addActionListener(new LogoutButtonListener());
+        logoutButton.addActionListener(new LogoutButtonListener());
 
         // Set up frame
         setSize(800, 600);
@@ -178,7 +178,10 @@ public class dashboardGUI extends JFrame implements ActionListener {
 
     //logout listener
 
-
+    public class LogoutButtonListener implements ActionListener{
+        public void actionPerformed(ActionEvent e){
+        }
+    }
 
     public static void main(String[] args) {
         new dashboardGUI();

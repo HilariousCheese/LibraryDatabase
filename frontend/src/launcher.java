@@ -8,14 +8,14 @@ import java.sql.SQLException;
 
 import javax.swing.*;
 
-public class loginGUI implements ActionListener {
+public class launcher implements ActionListener {
 
     private JTextField userText;
     private JPasswordField passwordText;
     private JLabel success;
 
     public static void main(String[] args) {
-        loginGUI gui = new loginGUI();
+        launcher gui = new launcher();
         gui.createGUI();
     }
 
