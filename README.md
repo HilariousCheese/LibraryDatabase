@@ -6,4 +6,4 @@
 
 **Tak Sum Li**
 
-<u> Library Management App in Java and MySQL </u>
+Library Management App in Java and MySQL
