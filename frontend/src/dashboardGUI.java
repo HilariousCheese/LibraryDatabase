@@ -87,7 +87,7 @@ public class dashboardGUI extends JFrame implements ActionListener {
         public void actionPerformed(ActionEvent e) {
             String searchQuery = searchField.getText();
             try {
-                rs = stmt.executeQuery("SELECT * FROM library WHERE bookName LIKE '%" + searchQuery + "%'");
+                rs = stmt.executeQuery("SELECT * FROM library WHERE item LIKE '%" + searchQuery + "%'");
                 while (rs.next()) {
                     resultArea.append(
                             "Title: " + rs.getString("bookName") + 
