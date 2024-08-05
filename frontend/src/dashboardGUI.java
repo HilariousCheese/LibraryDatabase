@@ -152,7 +152,7 @@ public class dashboardGUI extends JFrame implements ActionListener {
                     + ", NOW(), NOW() + INTERVAL 30 DAY)");
             stmt.executeUpdate("UPDATE item SET copies = copies - 1 WHERE ItemId = " + itemid);
             stmt.executeUpdate("UPDATE person SET TotalLoansMade = TotalLoansMade +1 WHERE PersonId = " + pid);
-            JOptionPane.showMessageDialog(null, "Book borrowed successfully");
+            JOptionPane.showMessageDialog(null, "Book borrowed successfully\nPlease pickup at the branch.");
         } catch (SQLException ex) {
             System.out.println("Error: " + ex.getMessage());
         }
@@ -239,8 +239,8 @@ public class dashboardGUI extends JFrame implements ActionListener {
                 while (rs.next()) {
                     resultArea.append(
                         "Name: " + rs.getString("uNAME")
-                        + "\nBooks Borrowed: " + rs.getString("TotalLoansMade")
-                        + "\nItemmid: " + rs.getString("title")
+                        + "\nNumber of Books Borrowed: " + rs.getString("TotalLoansMade")
+                        + "\nBook: " + rs.getString("title")
                         + "\nloadndate: " + rs.getString("loanDate")
                         + "\nreturndate: " + rs.getString("returnDate")
                         + "\n\n"
