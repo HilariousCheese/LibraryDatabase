@@ -69,15 +69,15 @@ public class launcher implements ActionListener {
         
         try (Connection conn = DriverManager.getConnection(URL, DB_USER, DB_PW)) {
             String query = "SELECT * FROM person WHERE uNAME= ? AND pw = ?";
-            try (PreparedStatement pstmt = conn.prepareStatement(query)) {
-                pstmt.setString(1, user);
-                pstmt.setString(2, password);
+            try (PreparedStatement statement = conn.prepareStatement(query)) {
+                statement.setString(1, user);
+                statement.setString(2, password);
 
-                try (ResultSet rs = pstmt.executeQuery()) {
+                try (ResultSet rs = statement.executeQuery()) {
                     if (rs.next()) {
                         success.setText("Login successful!");
 
-                        dashboardGUI dashboard = new dashboardGUI();
+                        dashboardGUI dashboard = new dashboardGUI(user);
                         dashboard.setVisible(true);
 
                         JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(userText);

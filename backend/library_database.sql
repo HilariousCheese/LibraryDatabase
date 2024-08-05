@@ -47,7 +47,7 @@ CREATE TABLE `person` (
   `pw` varchar(255) NOT NULL,
   `UserType` varchar(30) DEFAULT NULL,
   `PreferredBranch` int(11) DEFAULT NULL,
-  `TotalLoansMade` int(11) DEFAULT NULL,
+  `TotalLoansMade` int(11) DEFAULT 0,
   PRIMARY KEY (`PersonId`),
   KEY `person_ibfk_1` (`PreferredBranch`),
   CONSTRAINT `person_ibfk_1` FOREIGN KEY (`PreferredBranch`) REFERENCES `librarybranch` (`LibraryBranchID`)
@@ -58,14 +58,10 @@ CREATE TABLE `loan` (
   `LoanId` int(11) NOT NULL AUTO_INCREMENT,
   `Pid` int(11) DEFAULT NULL,
   `Itemid` int(11) DEFAULT NULL,
-  `loanDate` date DEFAULT '0000-00-00',
-  `overdue` tinyint(1) DEFAULT '0',
-  PRIMARY KEY (`LoanId`),
-  KEY `loan_ibfk_1` (`Pid`),
-  KEY `loan_ibfk_2` (`Itemid`),
-  CONSTRAINT `loan_ibfk_1` FOREIGN KEY (`Pid`) REFERENCES `person` (`PersonId`),
-  CONSTRAINT `loan_ibfk_2` FOREIGN KEY (`Itemid`) REFERENCES `item` (`ItemId`)
-) ;
+  `loanDate` date,
+  `returnDate` date,
+  PRIMARY KEY (`LoanId`)
+);
 
 
 CREATE TABLE `rating` (

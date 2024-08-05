@@ -7,12 +7,12 @@ INSERT INTO librarybranch VALUES (4, 'Mountain View Public Library', '585 Frankl
 INSERT INTO librarybranch VALUES (5, 'Milpitas Library', '160 N Main St, Milpitas, CA 95035');
 
 
-insert into person(uname,pw,usertype,preferredbranch) values('admin','password','U','1');
-insert into person(uname,pw,usertype,preferredbranch) values('Ivan','password','U','1');
-insert into person(uname,pw,usertype,preferredbranch) values('Tom','password','U','2');
-insert into person(uname,pw,usertype,preferredbranch) values('Amy','password','U','3');
-insert into person(uname,pw,usertype,preferredbranch) values('Bob','password','U','4');
-insert into person(uname,pw,usertype,preferredbranch) values('Alice','password','U','5');
+insert into person(uname,pw,usertype,preferredbranch) values('admin','123','U','1');
+insert into person(uname,pw,usertype,preferredbranch) values('Ivan','123','U','1');
+insert into person(uname,pw,usertype,preferredbranch) values('Tom','123','U','2');
+insert into person(uname,pw,usertype,preferredbranch) values('Amy','123','U','3');
+insert into person(uname,pw,usertype,preferredbranch) values('Bob','123','U','4');
+insert into person(uname,pw,usertype,preferredbranch) values('Alice','123','U','5');
 
 
 insert into item(title,author,libraryBranchID,ItemType,copies) values('Dune', 'Frank Herbert', '1', 'Novel', '5');
