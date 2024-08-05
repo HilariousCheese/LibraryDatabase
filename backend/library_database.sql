@@ -21,6 +21,7 @@ CREATE TABLE `item` (
   `ItemType` varchar(50) DEFAULT NULL,
   `copies` int(11) DEFAULT NULL,
   `updatedAt` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `about` varchar (255) DEFAULT NULL,
   PRIMARY KEY (`ItemId`),
   KEY `item_ibfk_1` (`LibraryBranchID`),
   CONSTRAINT `item_ibfk_1` FOREIGN KEY (`LibraryBranchID`) REFERENCES `librarybranch` (`LibraryBranchID`)

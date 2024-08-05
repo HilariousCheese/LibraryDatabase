@@ -19,7 +19,7 @@ public class launcher implements ActionListener {
         gui.createGUI();
     }
 
-    private void createGUI() {
+    void createGUI() {
         JPanel panel = new JPanel();
         JFrame frame = new JFrame();
         frame.setSize(350, 200);

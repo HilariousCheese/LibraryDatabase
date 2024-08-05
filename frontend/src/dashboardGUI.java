@@ -16,9 +16,7 @@ public class dashboardGUI extends JFrame implements ActionListener {
     JButton branchButton = new JButton("Branches");
     JButton popularBooksButton = new JButton("Popular Books");
     JButton bookLibraryButton = new JButton("Book Library");
-    JButton friendsInfoButton = new JButton("Friends Info");
     JButton profileButton = new JButton("Profile");
-    JButton settingsButton = new JButton("Settings");
     JButton logoutButton = new JButton("Logout");
 
     // right panel
@@ -51,9 +49,7 @@ public class dashboardGUI extends JFrame implements ActionListener {
         buttonsPanel.add(bookLibraryButton);
         buttonsPanel.add(branchButton);
         buttonsPanel.add(popularBooksButton);
-        // buttonsPanel.add(friendsInfoButton);
         buttonsPanel.add(profileButton);
-        buttonsPanel.add(settingsButton);
         buttonsPanel.add(logoutButton);
         leftPanel.add(buttonsPanel, BorderLayout.SOUTH);
 
@@ -83,9 +79,7 @@ public class dashboardGUI extends JFrame implements ActionListener {
         branchButton.addActionListener(new BranchButtonListener());
         popularBooksButton.addActionListener(new PopularBooksButtonListener());
         bookLibraryButton.addActionListener(new BookLibraryButtonListener());
-        // friendsInfoButton.addActionListener(new FriendsInfoButtonListener());
-        // profileButton.addActionListener(new ProfileButtonListener());
-        // settingsButton.addActionListener(new SettingsButtonListener());
+        profileButton.addActionListener(new ProfileButtonListener());
         logoutButton.addActionListener(new LogoutButtonListener());
 
         // Set up frame
@@ -122,7 +116,7 @@ public class dashboardGUI extends JFrame implements ActionListener {
             String borrowQuery = borrowField.getText();
             try {
                 rs = stmt.executeQuery("SELECT * FROM item WHERE title LIKE '%" + borrowQuery + "%'");
-                while (rs.next()){
+                while (rs.next()) {
                     itemid = rs.getInt("ItemID");
                 }
             } catch (Exception ex) {
@@ -139,7 +133,7 @@ public class dashboardGUI extends JFrame implements ActionListener {
 
     // Method to get user's pid
     private int getPersonId() {
-        //String user = "admin";
+        // String user = "admin";
         try {
             rs = stmt.executeQuery("SELECT PersonId FROM person WHERE uNAME = '" + user + "'");
             if (rs.next()) {
@@ -220,8 +214,9 @@ public class dashboardGUI extends JFrame implements ActionListener {
                 resultArea.setText("");
                 while (rs.next()) {
                     resultArea.append(
-                            "Title: " + rs.getString("title")
-                                    + "\nRatings: " + rs.getString("totalRatings"));
+                            "__________Trending__________"
+                            + "\n\nTitle: " + rs.getString("title")
+                            + "\nRatings: " + rs.getString("totalRatings"));
                 }
             } catch (Exception ex) {
                 System.out.println("Error" + ex.getMessage());
@@ -233,19 +228,41 @@ public class dashboardGUI extends JFrame implements ActionListener {
     private class ProfileButtonListener implements ActionListener {
         public void actionPerformed(ActionEvent e) {
             try {
-                rs = stmt.executeQuery("select ");
+                int pid = getPersonId();
+                resultArea.setText("");
+                rs = stmt.executeQuery("SELECT p.uNAME, p.TotalLoansMade, i.title, l.loanDate, l.returnDate "
+                        + "FROM person p "
+                        + "JOIN loan l ON p.PersonId = l.Pid "
+                        + "JOIN item i ON l.Itemid = i.ItemId "
+                        + "WHERE p.PersonId = " + pid);
+
+                while (rs.next()) {
+                    resultArea.append(
+                        "Name: " + rs.getString("uNAME")
+                        + "\nBooks Borrowed: " + rs.getString("TotalLoansMade")
+                        + "\nItemmid: " + rs.getString("title")
+                        + "\nloadndate: " + rs.getString("loanDate")
+                        + "\nreturndate: " + rs.getString("returnDate")
+                        + "\n\n"
+                        );
+                
+                }
+
             } catch (Exception ex) {
-                // TODO: handle exception
+                System.out.println("error: " + ex.getMessage());
             }
         }
     }
 
-    // Borrow Button
-
     // logout listener
 
     public class LogoutButtonListener implements ActionListener {
+        @SuppressWarnings("deprecation")
         public void actionPerformed(ActionEvent e) {
+            dashboardGUI.this.disable();
+            launcher gui = new launcher();
+            gui.createGUI();
+            dashboardGUI.this.setVisible(false);
         }
     }
 
@@ -255,7 +272,6 @@ public class dashboardGUI extends JFrame implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'actionPerformed'");
     }
 }
