@@ -17,6 +17,7 @@ public class dashboardGUI extends JFrame implements ActionListener {
     JButton popularBooksButton = new JButton("Popular Books");
     JButton bookLibraryButton = new JButton("Book Library");
     JButton profileButton = new JButton("Profile");
+    JButton settingButton = new JButton("Settings - Admin only");
     JButton logoutButton = new JButton("Logout");
 
     // right panel
@@ -50,6 +51,7 @@ public class dashboardGUI extends JFrame implements ActionListener {
         buttonsPanel.add(branchButton);
         buttonsPanel.add(popularBooksButton);
         buttonsPanel.add(profileButton);
+        buttonsPanel.add(settingButton);
         buttonsPanel.add(logoutButton);
         leftPanel.add(buttonsPanel, BorderLayout.SOUTH);
 
@@ -80,6 +82,7 @@ public class dashboardGUI extends JFrame implements ActionListener {
         popularBooksButton.addActionListener(new PopularBooksButtonListener());
         bookLibraryButton.addActionListener(new BookLibraryButtonListener());
         profileButton.addActionListener(new ProfileButtonListener());
+        settingButton.addActionListener(new SettingButtonListener());
         logoutButton.addActionListener(new LogoutButtonListener());
 
         // Set up frame
@@ -223,6 +226,56 @@ public class dashboardGUI extends JFrame implements ActionListener {
             }
         }
     }
+
+    //setting button listener
+    private class SettingButtonListener implements ActionListener {
+        public void actionPerformed(ActionEvent e) {
+            int pid = getPersonId();
+            if (pid == 1) {
+                // Open settings window
+                settingsGUI settings = new settingsGUI();
+                settings.setVisible(true);
+            } else {
+                // Show error message
+                JOptionPane.showMessageDialog(null, "You are not allowed to access the settings option");
+            }
+        }
+    }
+
+    public class settingsGUI extends JFrame {
+        public settingsGUI() {
+            setSize(400, 300);
+
+            JPanel userPanel = new JPanel();
+            userPanel.setLayout(new BorderLayout());
+
+            JTextArea userArea = new JTextArea(20,30);
+            userArea.setEditable(false);
+
+            try {
+                rs = stmt.executeQuery("SELECT * FROM person");
+                while (rs.next()){
+                    userArea.append(
+                        "person ID: " + rs.getString("personid")
+                        + "\nUsername: " + rs.getString("uNAME")
+                        + "\nPassword: " + rs.getString("pw")
+                        + "\nUser Type: " + rs.getString("usertype")
+                        + "\nPreferred Branch: " + rs.getString("preferredbranch")
+                        + "\nNo. of book borrowed: " + rs.getString("TotalLoansMade")
+                        + "\n\n"
+                    );
+                }
+            } catch (Exception ex) {
+                System.out.println("Error: " + ex.getMessage());
+            }
+
+            JScrollPane usersScrollPane = new JScrollPane(userArea);
+            userPanel.add(usersScrollPane, BorderLayout.CENTER);
+            add(userPanel);
+        }
+    }
+
+
 
     // profile button listener
     private class ProfileButtonListener implements ActionListener {
