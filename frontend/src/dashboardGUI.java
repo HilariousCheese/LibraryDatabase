@@ -289,7 +289,9 @@ public class dashboardGUI extends JFrame implements ActionListener {
                         + "JOIN item i ON l.Itemid = i.ItemId "
                         + "WHERE p.PersonId = " + pid);
 
+                boolean hasRows = false;
                 while (rs.next()) {
+                    hasRows = true;
                     resultArea.append(
                         "Name: " + rs.getString("uNAME")
                         + "\nNumber of Books Borrowed: " + rs.getString("TotalLoansMade")
@@ -299,6 +301,9 @@ public class dashboardGUI extends JFrame implements ActionListener {
                         + "\n\n"
                         );
                 
+                }
+                if (hasRows == false){
+                    resultArea.append("You did not borrow any books");
                 }
 
             } catch (Exception ex) {
