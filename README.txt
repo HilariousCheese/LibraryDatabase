@@ -2,7 +2,7 @@ CS-157A-Group-Project
 
 Mohammad Edrees Nassimi
 Ivan Gabriel Cristobal
-Tak Sum Li
+Tak Sum Samuel Li
 
 Library Management App in Java and MySQL
 
@@ -11,3 +11,7 @@ Instruction:
 2. Change your sql server credential in the /frontend/src/dbinfo.java
 3. Make sure your IDE has jdbc driver
 4. Run /frontend/src/launcher.java
+
+Divison of work:
+Tak Sum Samuel Li = frontend, ui
+Ivan Gabriel Cristobal = backend, database
