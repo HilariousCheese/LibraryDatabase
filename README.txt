@@ -1,9 +1,3 @@
-CS-157A-Group-Project
-
-Mohammad Edrees Nassimi
-Ivan Gabriel Cristobal
-Tak Sum Samuel Li
-
 Library Management App in Java and MySQL
 
 Instruction:
@@ -12,6 +6,5 @@ Instruction:
 3. Make sure your IDE has jdbc driver
 4. Run /frontend/src/launcher.java
 
-Divison of work:
-Tak Sum Samuel Li = frontend, ui
-Ivan Gabriel Cristobal = backend, database
+Ivan Gabriel Cristobal
+Tak Sum Samuel Li
